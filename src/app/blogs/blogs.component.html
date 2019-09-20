@@ -1,0 +1,133 @@
+<div class="blogs-container">
+  <div class="blogs-container__sidebar">
+    <!-- Search Bar -->
+    <div class="searchbar">
+      <input class="searchbar__input" type="text" placeholder="Search.." name="search" />
+      <button class="searchbar__button" type="submit"><i class="fa fa-search"></i></button>
+    </div>
+
+    <!-- Products -->
+    <div class="list">
+      <p class="list__title">Products</p>
+      <div class="list__items">
+        <button
+          (click)="productClicked(0)"
+          class="list__item"
+          [class.list__item--active]="catid === 0"
+        >
+          All
+        </button>
+
+        <button
+          (click)="productClicked(product.id)"
+          *ngFor="let product of productsList"
+          class="list__item"
+          [class.list__item--active]="catid === product.id"
+        >
+          {{ product.title | titlecase }}
+        </button>
+
+        <!-- <button class="list__item">Officeds 365</button>
+        <button class="list__item">Dynamics</button>
+        <button class="list__item">One Note</button>
+        <button class="list__item">Textile</button> -->
+      </div>
+    </div>
+
+    <!-- Years -->
+    <div class="list">
+      <p class="list__title">Years</p>
+      <div class="list__items">
+        <button
+          (click)="yearsClicked(year)"
+          *ngFor="let year of yearsList"
+          class="list__item"
+          [class.list__item--active]="yearId === year"
+        >
+          {{ year }}
+        </button>
+        <!-- <button class="list__item">2018</button>
+        <button class="list__item">2017</button> -->
+      </div>
+    </div>
+  </div>
+  <div class="blogs-container__content">
+    <!-- BLOG CARD -->
+    <div
+      *ngFor="
+        let blog of blogsList
+          | paginate
+            : {
+                itemsPerPage: 10,
+                currentPage: pageno,
+                totalItems: total
+              };
+        index as i
+      "
+      class="blog-card"
+    >
+      <div class="blog-card__image">
+        <img src="../../assets/images/Office-365.jpg" alt="Image goes here..." />
+      </div>
+      <div class="blog-card__date">{{ blog.date | date }}</div>
+      <h2 class="blog-card__title">{{ blog.title }}</h2>
+      <p class="blog-card__description">
+        {{ blog.description }}
+        <a [routerLink]="['/blog', blog.slug]">more</a>
+      </p>
+    </div>
+
+    <pagination-controls
+      class="blogs-pagination"
+      (pageChange)="changePage($event)"
+      autoHide="true"
+      responsive="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+    ></pagination-controls>
+
+    <!-- BLOG CARD -->
+    <!-- <div class="blog-card">
+      <div class="blog-card__image">
+        <img src="../../assets/images/azure-vs-aws-pricing.jpg" alt="Image goes here..." />
+      </div>
+      <div class="blog-card__date">12 July, 2019</div>
+      <h2 class="blog-card__title">Microsoft Azure Security 2019</h2>
+      <p class="blog-card__description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero nesciunt molestiae at ipsum
+        quo. Vero totam autem voluptates, eos id officia laborum porro quos tempora officiis.
+        <a [routerLink]="['/blog', blog.slug]">more</a>
+      </p>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card__image">
+        <img src="../../assets/images/retail.jpg" alt="Image goes here..." />
+      </div>
+      <div class="blog-card__date">12 July, 2019</div>
+      <h2 class="blog-card__title">Microsoft Azure Security 2019 for the year</h2>
+      <p class="blog-card__description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero nesciunt molestiae at ipsum
+        quo. Vero totam autem voluptates, eos id officia laborum porro quos tempora officiis.
+        <a [routerLink]="['/blog', blog.slug]">more</a>
+      </p>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card__image">
+        <img src="../../assets/images/azure-vs-aws-pricing.jpg" alt="Image goes here..." />
+      </div>
+      <div class="blog-card__date">12 July, 2019</div>
+      <h2 class="blog-card__title">Microsoft Azure Security 2019</h2>
+      <p class="blog-card__description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero nesciunt molestiae at ipsum
+        quo. Vero totam autem voluptates, eos id officia laborum porro quos tempora officiis.
+        <a [routerLink]="['/blog', blog.slug]">more</a>
+      </p>
+    </div> -->
+  </div>
+</div>
+
+<!-- <a routerLink="/">Go Back to home</a>
+
+<a [routerLink]="['/blog/1']">Go to Specific blog</a> -->

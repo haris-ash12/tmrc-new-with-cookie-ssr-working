@@ -1,0 +1,72 @@
+@import "./../../scss/abstracts/mixins";
+@import "./../../scss/abstracts/variables";
+
+.footer {
+  background: $color-primary;
+
+  padding: 5rem;
+
+  display: grid;
+  grid-row-gap: 2rem;
+  align-items: start;
+  // justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+
+  //   grid-template-rows: auto auto;
+
+  &__links-container {
+    // grid-row: 1 / 2;
+
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+
+    grid-row-gap: 0.5rem;
+  }
+
+  &__links-title {
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  &__link {
+    font-size: 1.4rem;
+    color: $color-grey-2;
+  }
+
+  &__logos {
+    grid-column: 1 / -1;
+    align-self: center;
+    justify-self: center;
+
+    display: grid;
+    justify-items: center;
+    grid-gap: 2rem;
+  }
+  &__social-icons {
+    grid-row: 1 / 2;
+    & > a > img {
+      height: 3rem;
+    }
+    & > a {
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &__ms-icon {
+    height: 4rem;
+  }
+
+  &__copyrights {
+    grid-column: 1 / -1;
+    font-size: 1.4rem;
+    color: $color-grey-light;
+    padding: 1rem 2rem;
+    margin: 0;
+    border-top: 1px solid $color-grey;
+    text-align: center;
+  }
+}

@@ -1,0 +1,128 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+@import "./scss/main.scss";
+
+// ~~~ Bg color for pagination control / was not applying in blogs so pasted here globally. ~~~
+.ngx-pagination .current {
+  background-color: $color-primary !important;
+}
+// For dynamic content injection in blog details
+.dynamic-content {
+  display: grid;
+  padding: 3rem;
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.6rem;
+    line-height: 2;
+    color: $color-primary-light;
+    margin-bottom: 2rem;
+  }
+  img {
+    max-width: 100%;
+    margin-bottom: 2rem;
+    justify-self: center;
+  }
+}
+// --------------------------
+
+// For dynamic content injection in Generic
+// --------------------------
+.content-side {
+  padding: 3rem 5rem;
+
+  @include respond(tab-land) {
+    padding: 3rem 3rem;
+  }
+  @include respond(tab-port-2) {
+    grid-column: full-start / center-end;
+    padding: 3rem 5rem;
+  }
+
+  @include respond(phone) {
+    grid-column: full-start / full-end;
+  }
+
+  p {
+    font-size: 1.6rem;
+  }
+}
+// -------------------------
+
+// For dynamic content injection in news
+// ----------------------------------
+.news-content {
+  display: grid;
+  // padding: 3rem;
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.6rem;
+    line-height: 2;
+    color: $color-primary-light;
+    margin-bottom: 2rem;
+  }
+  img {
+    max-width: 100%;
+    margin-bottom: 2rem;
+    justify-self: center;
+  }
+}
+
+// ----------------------------------
+
+// For dynamic content injection in Careers.
+// ----------------------------------
+
+.job__description {
+  margin-top: 2rem;
+  display: grid;
+  // padding: 3rem;
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.5rem;
+    line-height: 2;
+    color: $color-primary-light;
+    margin-bottom: 2rem;
+  }
+  img {
+    max-width: 100%;
+    margin-bottom: 2rem;
+    justify-self: center;
+  }
+}
+
+// Change side scroll bar
+// ~~~~~~~~~~~~~~~~~~~~~
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~

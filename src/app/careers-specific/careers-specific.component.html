@@ -1,0 +1,129 @@
+<div class="job__container">
+  <div class="job__content">
+    <h2 class="job__title">{{ career.title }}</h2>
+    <!-- <h2 class="job__title">Job Title</h2> -->
+    <span class="job__position-location">
+      <ng-container>
+        <p *ngIf="career.position === 1" class="job__position">{{ career.position }} position</p>
+        <p *ngIf="career.position > 1" class="job__position">{{ career.position }} positions</p>
+      </ng-container>
+      <!-- <p class="job__position">2 positions</p> -->
+      <span> - </span>
+      <p class="job__location">
+        <span *ngFor="let city of career.cities; let i = index"
+          >{{ city.Name }}
+          <span *ngIf="i !== career.cities.length - 1">, </span>
+        </span>
+      </p>
+      <!-- <p class="job__location">
+        <span
+          >Islamabad, Rawalpindi
+        </span>
+      </p> -->
+    </span>
+    <p class="job__type">{{ career.type | titlecase }}</p>
+    <!-- <p class="job__type">Full Time</p> -->
+
+    <div class="job__description" [innerHtml]="career.description">
+      <!-- <div class="job__description" > -->
+      <!-- <h2>Company Description</h2>
+      <p>
+        For over Decades we have maintained our reputation while integrating Business solutions to
+        the Enterprises with the Clientele based from different Domains where deployments are based
+        on Departmental specifics such as Finance, Human Resource, Supply chain, Manufacturing and
+        so on as well as full Enterprise Resource Planning Software’s.
+      </p>
+      <h2>Job Description</h2>
+      <p>
+        For over Decades we have maintained our reputation while integrating Business solutions to
+        the Enterprises with the Clientele based from different Domains where deployments are based
+        on Departmental specifics such as Finance, Human Resource, Supply chain, Manufacturing and
+        so on as well as full Enterprise Resource Planning Software’s.
+      </p>
+      <h2>Qualifications</h2>
+      <p>
+        For over Decades we have maintained our reputation while integrating Business solutions to
+        the Enterprises with the Clientele based from different Domains where deployments are based
+        on Departmental specifics such as Finance, Human Resource, Supply chain, Manufacturing and
+        so on as well as full Enterprise Resource Planning Software’s.
+      </p> -->
+    </div>
+
+    <!-- <a [routerLink]="['/careers', career.slug, 'apply']" class="job__interested-btn"
+      >I'm interested</a
+    > -->
+
+    <!-- (click)="open(content)" -->
+
+    <!-- <pre>{{ closeResult }}</pre> -->
+  </div>
+  <div class="job__half">
+    <!-- <p class="job__other-jobs">Other jobs at tmr consulting.</p>
+
+    <div class="job__item">
+      <p class="job__item__title">Graphic Designer</p>
+      <p class="job__item__location">Lahore</p>
+    </div>
+
+    <div class="job__item">
+      <p class="job__item__title">Web Developer</p>
+      <p class="job__item__location">Lahore</p>
+    </div>
+
+    <div class="job__item">
+      <p class="job__item__title">.Net Developer</p>
+      <p class="job__item__location">Lahore</p>
+    </div>
+
+    <a routerLink="/careers" class="job__all-btn">Show all jobs</a> -->
+
+    <p class="job__line">Add your resume here. The resume must be a .doc, .docx or a pdf file.</p>
+
+    <!-- <p class="job__line">
+      Select resume
+      <span><input type="file" name="myFile"/></span>
+    </p> -->
+    <span class=" job__line job__line--n">Select resume </span>
+    <span class="job__line job__line--n">
+      <label for="file-upload" class="job__upload-btn">
+        Upload
+      </label>
+      <input
+        type="file"
+        id="file-upload"
+        name="myFile"
+        (change)="handleFileInput($event.target.files)"
+      />
+    </span>
+
+    <form class="job__form" #f="ngForm" (ngSubmit)="save(f)">
+      <div class="job__form-group">
+        <label for="name" class="job__label">Name</label>
+        <input ngModel name="name" #name type="text" id="name" class="job__input" />
+      </div>
+      <div class="job__form-group">
+        <label for="email" class="job__label">Email</label>
+        <input ngModel name="email" #email type="text" id="email" class="job__input" />
+      </div>
+
+      <div class="job__form-group">
+        <label for="phone" class="job__label">Phone</label>
+        <input ngModel name="phone" #phone type="text" id="phone" class="job__input" />
+      </div>
+
+      <div class="job__form-group">
+        <label for="address" class="job__label">Address</label>
+        <input
+          ngModel
+          name="coverLetter"
+          #coverLetter
+          type="text"
+          id="address"
+          class="job__input"
+        />
+      </div>
+
+      <button class="job__submit-btn">I'm Interested</button>
+    </form>
+  </div>
+</div>

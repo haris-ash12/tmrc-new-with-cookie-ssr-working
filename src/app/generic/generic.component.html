@@ -1,0 +1,114 @@
+<div class="generic-container">
+  <div class="header__top">
+    <img src="../../assets/images/chemical-industry.png" alt="" class="header__icon" />
+    <h1 class="header__title">{{ content.title | titlecase }}</h1>
+  </div>
+  <div class="left-side">
+    <p class="links__title">{{ parentMenu | titlecase }}</p>
+
+    <div class="links__container">
+      <a
+        *ngFor="let submenu of submenus"
+        [routerLink]="['/', parentMenu, submenu.slug]"
+        class="links__link"
+        >{{ submenu.titleName }}</a
+      >
+
+      <!-- <a href="#" class="links__link">Microsoft Dynamics 365</a>
+      <a href="#" class="links__link">Microsoft Azure</a>
+      <a href="#" class="links__link">Peach tree</a>
+      <a href="#" class="links__link">Microsoft Office 365</a> -->
+    </div>
+  </div>
+  <div class="content-side" [innerHtml]="content.details">
+    <!-- <h1>headining 1</h1>
+    <p>
+      For over Decades we have maintained our reputation while integrating Business solutions to the
+      Enterprises with the Clientele based from different Domains where deployments are based on
+      Departmental specifics such as Finance, Human Resource, Supply chain, Manufacturing and so on
+      as well as full Enterprise Resource Planning Software’s.
+    </p>
+
+    <p>
+      We have a long list of clients growing with us in their businesses, So Make it happen and
+      Possible we are at your service Sir! we are partners with Microsoft at the Tier 1 level
+      meaning our competencies are regularly monitor and enhanced on Daily basis to cope with the
+      future needs of Our clients.
+    </p>
+
+    <h1>headining 1</h1>
+    <p>
+      For over Decades we have maintained our reputation while integrating Business solutions to the
+      Enterprises with the Clientele based from different Domains where deployments are based on
+      Departmental specifics such as Finance, Human Resource, Supply chain, Manufacturing and so on
+      as well as full Enterprise Resource Planning Software’s.
+    </p>
+
+    <p>
+      We have a long list of clients growing with us in their businesses, So Make it happen and
+      Possible we are at your service Sir! we are partners with Microsoft at the Tier 1 level
+      meaning our competencies are regularly monitor and enhanced on Daily basis to cope with the
+      future needs of Our clients.
+    </p>
+
+    <h1>headining 1</h1>
+    <p>
+      For over Decades we have maintained our reputation while integrating Business solutions to the
+      Enterprises with the Clientele based from different Domains where deployments are based on
+      Departmental specifics such as Finance, Human Resource, Supply chain, Manufacturing and so on
+      as well as full Enterprise Resource Planning Software’s.
+    </p>
+
+    <p>
+      We have a long list of clients growing with us in their businesses, So Make it happen and
+      Possible we are at your service Sir! we are partners with Microsoft at the Tier 1 level
+      meaning our competencies are regularly monitor and enhanced on Daily basis to cope with the
+      future needs of Our clients.
+    </p>
+
+    <h1>headining 1</h1>
+    <p>
+      For over Decades we have maintained our reputation while integrating Business solutions to the
+      Enterprises with the Clientele based from different Domains where deployments are based on
+      Departmental specifics such as Finance, Human Resource, Supply chain, Manufacturing and so on
+      as well as full Enterprise Resource Planning Software’s.
+    </p>
+
+    <p>
+      We have a long list of clients growing with us in their businesses, So Make it happen and
+      Possible we are at your service Sir! we are partners with Microsoft at the Tier 1 level
+      meaning our competencies are regularly monitor and enhanced on Daily basis to cope with the
+      future needs of Our clients.
+    </p>
+
+    <h1 name="abc-abc">ABC 1</h1>
+    <p>
+      For over Decades we have maintained our reputation while integrating Business solutions to the
+      Enterprises with the Clientele based from different Domains where deployments are based on
+      Departmental specifics such as Finance, Human Resource, Supply chain, Manufacturing and so on
+      as well as full Enterprise Resource Planning Software’s.
+    </p>
+
+    <p>
+      We have a long list of clients growing with us in their businesses, So Make it happen and
+      Possible we are at your service Sir! we are partners with Microsoft at the Tier 1 level
+      meaning our competencies are regularly monitor and enhanced on Daily basis to cope with the
+      future needs of Our clients.
+    </p> -->
+  </div>
+  <div class="right-side">
+    <p class="links__title">Content</p>
+    <div class="links__container">
+      <a
+        *ngFor="let content of sideContents"
+        href="/{{ parentMenu }}/{{ childMenu }}/#{{ content.hrefValue }}"
+        class="links__link"
+        >{{ content.title }}</a
+      >
+
+      <!-- <a href="#" class="links__link">A modern and adaptable solution</a>
+      <a href="#" class="links__link">Why choose dynamics 365?</a>
+      <a href="#" class="links__link">Dynamics 365 Modules</a> -->
+    </div>
+  </div>
+</div>

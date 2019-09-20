@@ -1,0 +1,138 @@
+@import "./../../scss/abstracts/mixins";
+@import "./../../scss/abstracts/variables";
+
+.detail-container {
+  // ...
+  margin-top: 5rem;
+  // ...
+  display: grid;
+  grid-template-columns:
+    [full-start] 5rem
+    [center-start] repeat(8, [col-start] minmax(min-content, 1fr) [col-end]) [center-end]
+    5rem [full-end];
+  align-items: start;
+
+  @include respond(tab-port-near) {
+    grid-template-rows: max-content max-content;
+  }
+
+  &__content {
+    grid-column: center-start / col-end 6;
+    padding: 3rem;
+
+    @include respond(tab-port-near) {
+      grid-column: center-start / center-end;
+      grid-row: 1 / 2;
+    }
+
+    @include respond(phone) {
+      grid-column: full-start / full-end;
+      padding: 0;
+    }
+  }
+
+  &__sidebar {
+    grid-column: col-start 7 / center-end;
+    padding: 3rem;
+
+    @include respond(tab-port-near) {
+      grid-column: center-start / center-end;
+      grid-row: 2 / 3;
+    }
+
+    @include respond(phone) {
+      grid-column: full-start / full-end;
+    }
+  }
+}
+
+// ~~~ List of items ~~~
+.list {
+  display: flex;
+  flex-direction: column;
+
+  &:not(:first-child) {
+    margin-top: 3rem;
+  }
+
+  &__title {
+    color: $color-primary;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  &__items {
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    font-size: 1.4rem;
+    text-align: start;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    color: $color-grey;
+    letter-spacing: 1.2px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    &--active {
+      color: $color-secondary;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-grey-light;
+    }
+  }
+}
+
+.hero-area {
+  display: grid;
+  grid-row-gap: 1.5rem;
+  justify-items: center;
+
+  &__title {
+    font-size: 3.5rem;
+  }
+  &__date {
+    font-size: 1.6rem;
+    color: $color-grey;
+  }
+  &__tag {
+    font-size: 1.3rem;
+    color: white;
+    background-color: rgb(236, 82, 82);
+    padding: 0.2rem 1rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem rgba($color-grey, 0.2);
+  }
+
+  &::after {
+    content: "";
+    height: 1px;
+    width: 50%;
+    background-color: $color-grey-light;
+  }
+}
+
+// ~~~ Dynamic content ~~~
+.dynamic-content {
+  display: grid;
+  padding: 3rem;
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.6rem;
+    line-height: 2;
+    color: $color-primary-light;
+    margin-bottom: 2rem;
+  }
+  img {
+    max-width: 100%;
+    margin-bottom: 2rem;
+    justify-self: center;
+  }
+}

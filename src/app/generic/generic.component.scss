@@ -1,0 +1,109 @@
+@import "./../../scss/abstracts/mixins";
+@import "./../../scss/abstracts/variables";
+
+.generic-container {
+  display: grid;
+  grid-template-columns: [full-start] 2fr [center-start] 6fr [center-end] 2fr [full-end];
+}
+// ~~~ Top Section ~~~
+.header {
+  &__top {
+    grid-column: 1 / -1;
+    background-color: $color-primary;
+    padding: 3rem;
+
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-row-gap: 1rem;
+  }
+
+  &__icon {
+    height: 8rem;
+  }
+
+  &__title {
+    font-size: 4rem;
+    color: $color-secondary;
+    margin: 0;
+  }
+}
+
+.left-side,
+.right-side {
+  display: flex;
+  flex-direction: column;
+
+  padding: 3rem;
+
+  @include respond(tab-land) {
+    padding: 3rem 2rem;
+  }
+}
+.left-side {
+  border-right: 1px solid $color-grey-light;
+
+  @include respond(tab-port-2) {
+    display: none;
+  }
+}
+.right-side {
+  border-left: 1px solid $color-grey-light;
+
+  @include respond(phone) {
+    display: none;
+  }
+}
+
+// ~~~ Links ~~~
+.links {
+  //   grid-column: full-start / center-start;
+  //   background-color: lightblue;
+
+  &__title {
+    font-size: 1.6rem;
+    border-bottom: 3px double $color-primary;
+    font-weight: 500;
+
+    // For flex, that aligns at start.
+    align-self: flex-start;
+  }
+
+  &__container {
+    display: grid;
+    grid-gap: 1rem;
+  }
+
+  &__link {
+    font-size: 1.5rem;
+    color: $color-primary;
+    text-decoration: none;
+  }
+}
+
+// ~~~  Content side ~~~
+// .content-side {
+//   //   background-color: lightcoral;
+//   //   grid-column: center-start / center-end;
+//   padding: 2rem;
+// }
+
+.content-side {
+  padding: 3rem 5rem;
+
+  @include respond(tab-land) {
+    padding: 3rem 3rem;
+  }
+  @include respond(tab-port-2) {
+    grid-column: full-start / center-end;
+    padding: 3rem 5rem;
+  }
+
+  @include respond(phone) {
+    grid-column: full-start / full-end;
+  }
+
+  p {
+    font-size: 1.6rem;
+  }
+}

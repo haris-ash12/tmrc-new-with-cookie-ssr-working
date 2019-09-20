@@ -1,0 +1,184 @@
+@import "./../../scss/abstracts/mixins";
+@import "./../../scss/abstracts/variables";
+
+.careers {
+  &__container {
+    // Temporary
+    margin-top: 5rem;
+
+    display: grid;
+    grid-template-columns:
+      [full-start] minmax(5rem, 1fr)
+      [center-start] repeat(8, [col-start] minmax(min-content, 1fr) [col-end]) [center-end]
+      minmax(5rem, 1fr) [full-end];
+
+    @include respond(phone) {
+      grid-template-columns:
+        [full-start] minmax(2.5rem, 1fr)
+        [center-start] repeat(8, [col-start] minmax(min-content, 1fr) [col-end]) [center-end]
+        minmax(2.5rem, 1fr) [full-end];
+    }
+
+    // Temporary
+    grid-template-rows: 1fr max-content max-content;
+  }
+
+  &__culture {
+    grid-column: center-start / center-end;
+    grid-row: 1 / 2;
+    // background: lightblue;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 5rem;
+
+    margin-bottom: 5rem;
+
+    @include respond(tab-port-3) {
+      grid-template-columns: 1fr;
+    }
+
+    &__content {
+      grid-column: 1 / 2;
+      //   padding: 5rem;
+      align-self: center;
+
+      @include respond(tab-port-3) {
+        grid-column: 1 / -1;
+        margin-bottom: 3rem;
+      }
+    }
+
+    &__heading {
+      color: $color-secondary;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    &__paragraph {
+      color: $color-primary;
+      font-size: 1.5rem;
+      line-height: 2;
+    }
+
+    &__content-image {
+      grid-column: 2 / 3;
+      align-self: center;
+
+      @include respond(tab-port-3) {
+        grid-column: 1 / -1;
+      }
+    }
+
+    &__image {
+      object-fit: fill;
+      // height: 100%;
+      width: 100%;
+    }
+  }
+
+  &__job-line {
+    grid-row: 2 / 3;
+    grid-column: full-start / full-end;
+    background: $color-primary;
+    padding: 2.5rem;
+    margin-bottom: 5rem;
+
+    &__heading {
+      font-size: 4rem;
+      text-align: center;
+      color: $color-secondary;
+
+      @include respond(phone) {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  &__jobs {
+    grid-row: 3 / 4;
+    grid-column: center-start / center-end;
+    margin-bottom: 5rem;
+    // background: lightcyan;
+
+    &__list {
+    }
+
+    &__item {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(min-content, 1fr));
+      justify-items: center;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      font-size: 1.4rem;
+
+      @include respond(tab-port-2) {
+        grid-template-columns: 1fr max-content;
+        grid-template-rows: repeat(4, max-content);
+        justify-items: start;
+        align-items: start;
+      }
+      @include respond(phone) {
+        padding: 1.5rem 0;
+
+        & > * {
+          margin: 0 1rem;
+        }
+      }
+
+      &:nth-child(even) {
+        background: #f8f8f8;
+      }
+
+      & > * {
+        margin-bottom: 0;
+      }
+    }
+
+    &__title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      justify-self: start;
+
+      @include respond(tab-port-2) {
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+      }
+    }
+
+    &__position {
+      @include respond(tab-port-2) {
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+      }
+    }
+
+    &__location {
+      @include respond(tab-port-2) {
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+      }
+    }
+
+    &__type {
+      @include respond(tab-port-2) {
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+      }
+    }
+
+    &__apply {
+      border-bottom: 1px solid $color-grey-light;
+      color: $color-primary;
+      text-decoration: none;
+      cursor: pointer;
+
+      @include respond(tab-port-2) {
+        grid-row: 1 / -1;
+        grid-column: 2 / 3;
+        align-self: end;
+      }
+    }
+  }
+}

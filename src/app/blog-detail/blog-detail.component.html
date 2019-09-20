@@ -1,0 +1,75 @@
+<div class="detail-container">
+  <div class="detail-container__content">
+    <div class="hero-area">
+      <h1 class="hero-area__title heading-1">{{ blog.title }}</h1>
+      <p class="hero-area__date">-- {{ blog.datePosted | date }} --</p>
+      <p class="hero-area__tag">{{ blog.productCategory }}</p>
+      <!-- 
+      <h1 class="hero-area__title heading-1">Heading of blog</h1>
+      <p class="hero-area__date">-- 21 jan, 2017 --</p>
+      <p class="hero-area__tag">Azure</p> -->
+    </div>
+    <div class="dynamic-content" [innerHtml]="blog.description">
+      <!-- <div class="dynamic-content"> -->
+      <!-- <h2>Cloud Based solutions</h2>
+      <p>
+        Dynamics 365, Cloud-based solution, the combination of Enterprise Resource Planning (ERP)
+        and Customer Relationship Management (CRM) giving strength to business by generating
+        effective outcomes; possessing enough capabilities to digitally transform the business
+        applications. Manage the workflow of business with flexibility & adaptability and accomplish
+        large scale collaboration among multiple departments of the firm with real-time insight.
+      </p>
+      <img src="../../assets/images/azure-vs-aws-pricing.jpg" alt="Image" />
+      <p>
+        Dynamics 365, Cloud-based solution, the combination of Enterprise Resource Planning (ERP)
+        and Customer Relationship Management (CRM) giving strength to business by generating
+        effective outcomes; possessing enough capabilities to digitally transform the business
+        applications. Manage the workflow of business with flexibility & adaptability and accomplish
+        large scale collaboration among multiple departments of the firm with real-time insight.
+      </p>
+      <h2>Cloud Based solutions</h2>
+      <img src="../../assets/images/azure.png" alt="Image" />
+      <p>
+        Dynamics 365, Cloud-based solution, the combination of Enterprise Resource Planning (ERP)
+        and Customer Relationship Management (CRM) giving strength to business by generating
+        effective outcomes; possessing enough capabilities to digitally transform the business
+        applications. Manage the workflow of business with flexibility & adaptability and accomplish
+        large scale collaboration among multiple departments of the firm with real-time insight.
+      </p> -->
+    </div>
+  </div>
+  <div class="detail-container__sidebar">
+    <!-- Products -->
+    <div class="list">
+      <p class="list__title">Products</p>
+      <div class="list__items">
+        <button (click)="productClicked(0)" class="list__item">
+          All
+        </button>
+        <button
+          (click)="productClicked(product.id)"
+          *ngFor="let product of productsList"
+          class="list__item"
+        >
+          {{ product.title | titlecase }}
+        </button>
+        <!-- <button class="list__item">Officeds 365</button>
+        <button class="list__item">Dynamics</button>
+        <button class="list__item">One Note</button>
+        <button class="list__item">Textile</button> -->
+      </div>
+    </div>
+
+    <!-- Years -->
+    <div class="list">
+      <p class="list__title">Years</p>
+      <div class="list__items">
+        <button (click)="yearsClicked(year)" *ngFor="let year of yearsList" class="list__item">
+          {{ year }}
+        </button>
+        <!-- <button class="list__item">2018</button>
+        <button class="list__item">2017</button> -->
+      </div>
+    </div>
+  </div>
+</div>

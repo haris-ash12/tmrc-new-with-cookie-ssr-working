@@ -1,0 +1,83 @@
+<div class="careers__container">
+  <!-- ~~~ CULTURE PART ~~~ -->
+  <div class="careers__culture">
+    <div class="careers__culture__content">
+      <h2 class="careers__culture__heading">CULTURE</h2>
+      <p class="careers__culture__paragraph">
+        For over Decades we have maintained our reputation while integrating Business solutions to
+        the Enterprises with the Clientele based from different Domains where deployments are based
+        on Departmental specifics such as Finance, Human Resource, Supply chain, Manufacturing and
+        so on as well as full Enterprise Resource Planning Software’s.
+      </p>
+    </div>
+    <div class="careers__culture__content-image">
+      <img
+        src="../../assets/images/culture-image.png"
+        alt="Culture Image"
+        class="careers__culture__image"
+      />
+    </div>
+  </div>
+
+  <!-- ~~~ JOB LINE PART -->
+  <div class="careers__job-line">
+    <h1 class="careers__job-line__heading">Jobs at TMR Consulting.</h1>
+  </div>
+
+  <!-- ~~~ JOBS LIST PART ~~~ -->
+  <div class="careers__jobs">
+    <div class="careers__jobs__list">
+      <div *ngFor="let career of careers" class="careers__jobs__item">
+        <p class="careers__jobs__title">{{ career.title }}</p>
+        <ng-container>
+          <p *ngIf="career.position === 1">{{ career.position }} Position</p>
+          <p *ngIf="career.position > 1" class="careers__jobs__position">
+            {{ career.position }} Positions
+          </p>
+        </ng-container>
+
+        <p class="careers__jobs__location">
+          <span *ngFor="let city of career.cities; let i = index"
+            >{{ city.Name }}
+            <span *ngIf="i !== career.cities.length - 1">, </span>
+          </span>
+        </p>
+
+        <p class="careers__jobs__type">{{ career.type }}</p>
+        <a [routerLink]="['/careers', career.slug]" class="careers__jobs__apply">Apply now</a>
+      </div>
+
+      <!-- <div class="careers__jobs__item">
+        <p class="careers__jobs__title">.Net Developer</p>
+        <p class="careers__jobs__position">2 Positions</p>
+        <p class="careers__jobs__location">Islamabad</p>
+        <p class="careers__jobs__type">Full time</p>
+        <a routerLink="/careers/1" class="careers__jobs__apply">Apply now</a>
+      </div>
+
+      <div class="careers__jobs__item">
+        <p class="careers__jobs__title">Marketing Expert</p>
+        <p class="careers__jobs__position">2 Positions</p>
+        <p class="careers__jobs__location">Islamabad</p>
+        <p class="careers__jobs__type">Full time</p>
+        <a routerLink="/careers/1" class="careers__jobs__apply">Apply now</a>
+      </div>
+
+      <div class="careers__jobs__item">
+        <p class="careers__jobs__title">Web Developer</p>
+        <p class="careers__jobs__position">2 Positions</p>
+        <p class="careers__jobs__location">Islamabad</p>
+        <p class="careers__jobs__type">Full time</p>
+        <a routerLink="/careers/1" class="careers__jobs__apply">Apply now</a>
+      </div>
+
+      <div class="careers__jobs__item">
+        <p class="careers__jobs__title">Seo Expert</p>
+        <p class="careers__jobs__position">2 Positions</p>
+        <p class="careers__jobs__location">Islamabad</p>
+        <p class="careers__jobs__type">Full time</p>
+        <a routerLink="/careers/1" class="careers__jobs__apply">Apply now</a>
+      </div> -->
+    </div>
+  </div>
+</div>
