@@ -19,6 +19,7 @@ import "zone.js/dist/zone-node";
 
 import * as express from "express";
 import { join } from "path";
+const https = require("https");
 
 // Express server
 const app = express();
@@ -42,18 +43,43 @@ const {
 //   ]
 // }));
 
-app.engine("html", (_, options, callback) =>
-  ngExpressEngine({
-    bootstrap: AppServerModuleNgFactory,
-    providers: [
-      provideModuleMap(LAZY_MODULE_MAP),
-      {
-        provide: "clientIPAddress",
-        useValue: options.req.remoteAddress || options.req.header("x-forwarded-for") //Provides the client IP address to angular
-      }
-    ]
-  })(_, options, callback)
-);
+app.engine("html", (_, options, callback) => {
+  console.log("server.ts .............................................................");
+  // console.log(options.req.remoteAddress || options.req.header("x-forwarded-for"));
+
+  // let clientIPAddress = options.req.remoteAddress || options.req.header("x-forwarded-for");
+
+  // For offline testing purposes.
+  let clientIPAddress = "115.186.141.114";
+  let key = "2e7502e026787dcc570948b8afa7f7e2ca0da36b82fdd970c4dc8a070747e309";
+
+  console.log("Client ip address..." + clientIPAddress);
+
+  https.get(
+    "https://api.ipinfodb.com/v3/ip-city/?key=" + key + "&ip=" + clientIPAddress + "&format=json",
+    res => {
+      let data = "";
+      res.on("data", chunk => {
+        data += chunk;
+        console.log("Country Code ... server.ts ... from geolocation");
+        let countryCode = JSON.parse(data).countryCode;
+        console.log("Country Code ... server.ts ... " + countryCode);
+
+        ngExpressEngine({
+          bootstrap: AppServerModuleNgFactory,
+          providers: [
+            provideModuleMap(LAZY_MODULE_MAP),
+            // {
+            //   provide: "clientIPAddress",
+            //   useValue: options.req.remoteAddress || options.req.header("x-forwarded-for") //Provides the client IP address to angular
+            // }
+            { provide: "countryCode", useValue: countryCode }
+          ]
+        })(_, options, callback);
+      });
+    }
+  );
+});
 
 app.set("view engine", "html");
 app.set("views", DIST_FOLDER);

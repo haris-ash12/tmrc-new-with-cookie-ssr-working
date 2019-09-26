@@ -42,6 +42,7 @@ import { CareersComponent } from "./careers/careers.component";
 import { CareersSpecificComponent } from "./careers-specific/careers-specific.component";
 import { CareersApplyComponent } from "./careers-apply/careers-apply.component";
 import { ServerCookieService } from "./services/server-cookie.service";
+import { CountryCodeGuardService } from "./services/country-code-guard.service";
 
 export function startupProviderFactory(provider: StartUpService) {
   // console.log('provider.startupcall..');
@@ -50,6 +51,23 @@ export function startupProviderFactory(provider: StartUpService) {
   return () => provider.startupCall();
 }
 
+export function setClientBaseHref(provider: StartUpService) {
+  console.log("setClientBaseHref...");
+  console.log("setClientBaseHref..." + provider.getCountryCode);
+
+  let cc = provider.getCountryCode;
+
+  if (cc.toLowerCase() === "pk") return "/";
+  else {
+    let urlPath = window.location.pathname;
+    console.log("urlPath ..." + urlPath);
+    let urlCountryCode = urlPath.split("/")[1];
+    console.log("urlCOuntryCOde..." + urlCountryCode);
+
+    if (urlCountryCode === provider.getCountryCode) return "/";
+    else return provider.getCountryCode;
+  }
+}
 export function starti(provider: StartUpService) {
   // console.log('provide country code');
 
@@ -97,21 +115,47 @@ export function starti(provider: StartUpService) {
 
     RouterModule.forRoot(
       [
-        { path: "", component: HomeComponent },
-        { path: "test", component: TestComponent },
-        // {
-        //   path: ':countryCode',
-        //   component: SpecificComponent,
-        //   children: [
+        {
+          path: "",
+          canActivate: [CountryCodeGuardService],
+          children: [
+            { path: "", component: HomeComponent },
+            { path: "test", component: TestComponent },
+            // {
+            //   path: ':countryCode',
+            //   component: SpecificComponent,
+            //   children: [
 
-        { path: "news/:slug", component: NewsComponent },
-        { path: "careers", component: CareersComponent },
-        { path: "careers/:specificCareer", component: CareersSpecificComponent },
-        { path: "careers/:specificCareer/apply", component: CareersApplyComponent },
+            { path: "news/:slug", component: NewsComponent },
+            { path: "careers", component: CareersComponent },
+            { path: "careers/:specificCareer", component: CareersSpecificComponent },
+            { path: "careers/:specificCareer/apply", component: CareersApplyComponent },
 
-        { path: "blog", component: BlogsComponent },
-        { path: "blog/:slug", component: BlogDetailComponent },
-        { path: ":menu/:submenu", component: GenericComponent }
+            { path: "blog", component: BlogsComponent },
+            { path: "blog/:slug", component: BlogDetailComponent },
+            { path: ":menu/:submenu", component: GenericComponent }
+          ]
+        },
+        {
+          path: ":cc",
+          children: [
+            { path: "", component: HomeComponent },
+            { path: "test", component: TestComponent },
+            // {
+            //   path: ':countryCode',
+            //   component: SpecificComponent,
+            //   children: [
+
+            { path: "news/:slug", component: NewsComponent },
+            { path: "careers", component: CareersComponent },
+            { path: "careers/:specificCareer", component: CareersSpecificComponent },
+            { path: "careers/:specificCareer/apply", component: CareersApplyComponent },
+
+            { path: "blog", component: BlogsComponent },
+            { path: "blog/:slug", component: BlogDetailComponent },
+            { path: ":menu/:submenu", component: GenericComponent }
+          ]
+        }
       ],
       {
         scrollPositionRestoration: "enabled",
@@ -129,9 +173,15 @@ export function starti(provider: StartUpService) {
     },
     {
       provide: APP_BASE_HREF,
-      useFactory: starti,
+      useFactory: setClientBaseHref,
       deps: [StartUpService]
     },
+
+    // This part is causing issue now...
+    // {
+    //   provide: APP_BASE_HREF,
+    //   useValue: "/abc"
+    // },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptorService,
