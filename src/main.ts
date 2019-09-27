@@ -26,5 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function apiCall() {
-  return fetch("http://web.tmrc1.ga/api/findLocation");
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  const url = "http://web.tmrc1.ga/api/findLocation";
+  return fetch(proxyurl + url);
 }
