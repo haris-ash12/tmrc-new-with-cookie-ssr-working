@@ -94,5 +94,8 @@ export class StartUpService {
         else return this.getCountryCode;
       }
     }
+    if (isPlatformServer(this.platformId)) {
+      return "";
+    }
   }
 }
