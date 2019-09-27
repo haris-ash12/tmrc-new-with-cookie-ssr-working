@@ -21,7 +21,7 @@ import { AppComponent } from "./app.component";
 import { BlogsComponent } from "./blogs/blogs.component";
 import { BlogDetailComponent } from "./blog-detail/blog-detail.component";
 import { LocationService } from "./services/location.service";
-import { APP_BASE_HREF } from "@angular/common";
+import { APP_BASE_HREF, isPlatformBrowser } from "@angular/common";
 import { SpecificComponent } from "./specific/specific.component";
 import { HomeComponent } from "./home/home.component";
 import { StartUpService } from "./services/start-up.service";
