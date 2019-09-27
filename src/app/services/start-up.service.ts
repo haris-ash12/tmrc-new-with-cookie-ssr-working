@@ -74,24 +74,25 @@ export class StartUpService {
   }
 
   settingBaseHref() {
-    console.log("setClientBaseHref...");
-    console.log("setClientBaseHref..." + this.countryCode);
+    if (isPlatformBrowser(this.platformId)) {
+      console.log("setClientBaseHref...");
+      console.log("setClientBaseHref..." + this.countryCode);
 
-    let cc = this.getCountryCode;
+      let cc = this.getCountryCode;
 
-    if (cc.toLowerCase() === "pk") return "/";
-    else {
-      let urlPath;
-      if (isPlatformBrowser(this.platformId)) {
+      if (cc.toLowerCase() === "pk") return "/";
+      else {
+        let urlPath;
+
         urlPath = window.location.pathname;
+
+        console.log("urlPath ..." + urlPath);
+        let urlCountryCode = urlPath.split("/")[1];
+        console.log("urlCOuntryCOde..." + urlCountryCode);
+
+        if (urlCountryCode === this.getCountryCode) return "/";
+        else return this.getCountryCode;
       }
-
-      console.log("urlPath ..." + urlPath);
-      let urlCountryCode = urlPath.split("/")[1];
-      console.log("urlCOuntryCOde..." + urlCountryCode);
-
-      if (urlCountryCode === this.getCountryCode) return "/";
-      else return this.getCountryCode;
     }
   }
 }
