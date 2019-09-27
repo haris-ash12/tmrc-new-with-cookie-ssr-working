@@ -72,4 +72,26 @@ export class StartUpService {
       return this.cookieService.get("countryCode") || this.countryCode;
     }
   }
+
+  settingBaseHref() {
+    console.log("setClientBaseHref...");
+    console.log("setClientBaseHref..." + this.countryCode);
+
+    let cc = this.getCountryCode;
+
+    if (cc.toLowerCase() === "pk") return "/";
+    else {
+      let urlPath;
+      if (isPlatformBrowser(this.platformId)) {
+        urlPath = window.location.pathname;
+      }
+
+      console.log("urlPath ..." + urlPath);
+      let urlCountryCode = urlPath.split("/")[1];
+      console.log("urlCOuntryCOde..." + urlCountryCode);
+
+      if (urlCountryCode === this.getCountryCode) return "/";
+      else return this.getCountryCode;
+    }
+  }
 }

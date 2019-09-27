@@ -52,21 +52,8 @@ export function startupProviderFactory(provider: StartUpService) {
 }
 
 export function setClientBaseHref(provider: StartUpService) {
-  console.log("setClientBaseHref...");
-  console.log("setClientBaseHref..." + provider.getCountryCode);
-
-  let cc = provider.getCountryCode;
-
-  if (cc.toLowerCase() === "pk") return "/";
-  else {
-    let urlPath = window.location.pathname;
-    console.log("urlPath ..." + urlPath);
-    let urlCountryCode = urlPath.split("/")[1];
-    console.log("urlCOuntryCOde..." + urlCountryCode);
-
-    if (urlCountryCode === provider.getCountryCode) return "/";
-    else return provider.getCountryCode;
-  }
+  console.log("Set client base href called ......");
+  return provider.settingBaseHref();
 }
 export function starti(provider: StartUpService) {
   // console.log('provide country code');
