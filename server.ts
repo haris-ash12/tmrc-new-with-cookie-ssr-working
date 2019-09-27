@@ -20,6 +20,7 @@ import "zone.js/dist/zone-node";
 import * as express from "express";
 import { join } from "path";
 const https = require("https");
+const cors = require("cors");
 
 // Express server
 const app = express();
@@ -42,6 +43,8 @@ const {
 //     provideModuleMap(LAZY_MODULE_MAP)
 //   ]
 // }));
+
+app.use(cors());
 
 app.engine("html", (_, options, callback) => {
   console.log("server.ts .............................................................");
