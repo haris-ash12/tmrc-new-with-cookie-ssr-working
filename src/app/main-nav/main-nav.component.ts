@@ -31,7 +31,7 @@ export class MainNavComponent implements OnInit {
     router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         console.log("navigation ends....");
-        this.sidenav.toggle();
+        this.sidenav.close();
       }
     });
   }
