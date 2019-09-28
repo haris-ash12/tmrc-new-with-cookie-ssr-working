@@ -8,9 +8,9 @@
 .sidenav {
   width: 35rem;
 
-  @include respond(phone) {
-    width: 40rem;
-  }
+  // @include respond(phone) {
+  //   width: 40rem;
+  // }
 }
 
 .sidenav .mat-toolbar {

@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { Observable } from "rxjs";
 import { map, share } from "rxjs/operators";
 import { MenuService } from "../services/menus/menu.service";
 import { NewsService } from "../services/news.service";
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
+import { MatSidenav } from "@angular/material";
 
 @Component({
   selector: "app-main-nav",
@@ -12,6 +13,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./main-nav.component.scss"]
 })
 export class MainNavComponent implements OnInit {
+  @ViewChild("drawer", { static: false }) sidenav: MatSidenav;
   menus: any[] = [];
   news: any = [];
 
@@ -23,8 +25,16 @@ export class MainNavComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private menuService: MenuService,
-    private newsService: NewsService
-  ) {}
+    private newsService: NewsService,
+    private router: Router
+  ) {
+    router.events.subscribe(val => {
+      if (val instanceof NavigationEnd) {
+        console.log("navigation ends....");
+        this.sidenav.toggle();
+      }
+    });
+  }
 
   ngOnInit() {
     let parentMenus: any[] = [];
