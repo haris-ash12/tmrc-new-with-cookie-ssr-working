@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { SubmenuService } from "../services/menus/submenu.service";
 import { GenericContentService } from "../services/generic-content.service";
 import { DomSanitizer, SafeHtml, Meta, Title } from "@angular/platform-browser";
+import { GlobalsService } from "../services/globals.service";
 
 @Component({
   selector: "app-generic",
@@ -22,7 +23,8 @@ export class GenericComponent implements OnInit {
     private genericContentService: GenericContentService,
     private meta: Meta,
     private titleSevice: Title,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    private globals: GlobalsService
   ) {
     console.log("Printing Meta tags for Generic component..., GO CHECK!");
     this.meta.addTag({ name: "Generic", content: "the generic tag ...." });
@@ -66,7 +68,7 @@ export class GenericComponent implements OnInit {
       this.genericContentService
         .getByQueryParams(childQueryParam)
         .subscribe((contentResponse: any) => {
-          console.log("Content...");
+          console.log("Content Response ...");
           console.log(contentResponse);
 
           // First we need to unescape details value.
@@ -125,15 +127,18 @@ export class GenericComponent implements OnInit {
 
           let contentObject = {
             details: sanitizedDetails,
-            iconPath: contentResponse.IconPath,
-            title: contentResponse.PageTitle,
+            iconPath: this.globals.url + "/" + contentResponse.IconPath,
+            pageTitle: contentResponse.PageTitle,
             slug: contentResponse.Slug,
             metaDescription: contentResponse.MetaDescription,
             metaKeywords: contentResponse.MetaKeywords,
-            pageTitle: contentResponse.PageTitle
+            contentTitle: contentResponse.Title
           };
 
           this.content = contentObject;
+
+          console.log("Content Object ...");
+          console.log(this.content);
 
           this.titleSevice.setTitle(this.content.pageTitle);
           this.meta.updateTag({ name: "keywords", content: this.content.metaKeywords });

@@ -67,7 +67,7 @@
       class="blog-card"
     >
       <div class="blog-card__image">
-        <img src="../../assets/images/Office-365.jpg" alt="Image goes here..." />
+        <img [src]="blog.featureImage" alt="Image goes here..." />
       </div>
       <div class="blog-card__date">{{ blog.date | date }}</div>
       <h2 class="blog-card__title">{{ blog.title }}</h2>

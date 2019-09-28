@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BlogsService } from '../services/blogs.service';
-import { ProductsService } from '../services/products.service';
-import { HelperValuesService } from '../services/helper-values.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { BlogsService } from "../services/blogs.service";
+import { ProductsService } from "../services/products.service";
+import { HelperValuesService } from "../services/helper-values.service";
+import { Router } from "@angular/router";
+import { GlobalsService } from "../services/globals.service";
 
 @Component({
-  selector: 'app-blogs',
-  templateUrl: './blogs.component.html',
-  styleUrls: ['./blogs.component.scss']
+  selector: "app-blogs",
+  templateUrl: "./blogs.component.html",
+  styleUrls: ["./blogs.component.scss"]
 })
 export class BlogsComponent implements OnInit {
   private blogsResponse: any[] = [];
@@ -26,11 +27,12 @@ export class BlogsComponent implements OnInit {
   constructor(
     private blogsService: BlogsService,
     private productsService: ProductsService,
-    private helperService: HelperValuesService
+    private helperService: HelperValuesService,
+    private globals: GlobalsService
   ) {
     this.yearId = 2019;
     this.catid = 0;
-    this.tags = '';
+    this.tags = "";
     this.pageno = 1;
 
     // Check values if it is navigating back from blog details.
@@ -38,7 +40,7 @@ export class BlogsComponent implements OnInit {
     else if (this.helperService.yearId) this.yearId = this.helperService.yearId;
 
     // Make a joint query.
-    this.query = 'year=' + this.yearId + '&catid=' + this.catid + '&pageno=' + this.pageno;
+    this.query = "year=" + this.yearId + "&catid=" + this.catid + "&pageno=" + this.pageno;
   }
 
   ngOnInit() {
@@ -82,6 +84,8 @@ export class BlogsComponent implements OnInit {
       this.total = blogResponse.Total;
 
       this.blogsList = this.makeBlogsObjectsArray(blogResponse.blogs);
+      console.log("Blogs list .....................................");
+      console.log(this.blogsList);
 
       // let blogsResponseArray = blogResponse.blogs;
 
@@ -104,9 +108,6 @@ export class BlogsComponent implements OnInit {
       //   };
       //   this.blogsList.push(blogsObject);
       // }
-
-      // console.log('Blogs list');
-      // console.log(this.blogsList);
     });
   }
 
@@ -125,7 +126,7 @@ export class BlogsComponent implements OnInit {
       let blogsObject = {
         date: blogs[i].CreatedDate,
         description: description,
-        featureImage: blogs[i].FeatureImage,
+        featureImage: this.globals.url + "/" + blogs[i].FeatureImage,
         slug: blogs[i].Slug,
         title: blogs[i].Title
       };
@@ -138,7 +139,7 @@ export class BlogsComponent implements OnInit {
     description.match(/<p>(.*?)<\/p>/).map(value => {
       description = value;
     });
-    return description.substr(0, 100) + ' ... ';
+    return description.substr(0, 100) + " ... ";
   }
 
   productClicked(productId) {
@@ -181,7 +182,7 @@ export class BlogsComponent implements OnInit {
 
   remakeQuery() {
     // Make a joint query.
-    this.query = 'year=' + this.yearId + '&catid=' + this.catid + '&pageno=' + this.pageno;
+    this.query = "year=" + this.yearId + "&catid=" + this.catid + "&pageno=" + this.pageno;
     // console.log(this.query);
   }
 

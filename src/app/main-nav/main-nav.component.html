@@ -18,7 +18,8 @@
       <a mat-list-item href="#">Link 3</a>
     </mat-nav-list> -->
 
-    <!-- My own list -->
+    <!-- My own list  | Side nav -->
+
     <div class="sidenav__list">
       <ng-container *ngFor="let menu of menus">
         <a
@@ -41,6 +42,12 @@
         </a>
       </ng-container>
 
+      <img
+        class="nav__logo nav__logo--csp-phone"
+        src="../../assets/images/logo/mbs-partner.png"
+        alt=""
+      />
+
       <!-- <a class="sidenav__list-item">Home</a>
 
       <a class="sidenav__dropdown-list-item" ngbDropdown>
@@ -53,7 +60,7 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    <!-- This mat-toolbar is a flex -->
+    <!-- This mat-toolbar is a CSS-flex -->
     <mat-toolbar color="primary">
       <img class="nav__logo" src="../../assets/images/logo/tmrc-logo.png" alt="Logo TMRC" />
 
@@ -149,6 +156,9 @@
           </div>
         </i>
       </div>
+
+      <!-- Another image icon | Microsoft CSP -->
+      <img class="nav__logo nav__logo--csp" src="../../assets/images/logo/mbs-partner.png" alt="" />
 
       <!-- Toggle button -->
       <button

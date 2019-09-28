@@ -50,6 +50,7 @@ app.engine("html", (_, options, callback) => {
   console.log("server.ts .............................................................");
   // console.log(options.req.remoteAddress || options.req.header("x-forwarded-for"));
 
+  console.log("options.req.url ... " + options.req.url);
   // let clientIPAddress = options.req.remoteAddress || options.req.header("x-forwarded-for");
 
   // For offline testing purposes. My ip address.

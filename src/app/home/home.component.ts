@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     private meta: Meta,
     private _sanitizer: DomSanitizer
   ) {
-    console.log("Printing Meta tags for home component..., GO CHECK!");
+    console.log("Home component ..............................................................");
     // this.meta.addTag({ name: "name", content: "the tag ...." });
     // this.meta.addTag({ name: "naanotherme", content: "the another tag ...." });
   }

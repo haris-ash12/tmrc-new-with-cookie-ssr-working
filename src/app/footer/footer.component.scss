@@ -10,9 +10,25 @@
   grid-row-gap: 2rem;
   align-items: start;
   // justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-
+  grid-template-columns: repeat(4, 1fr);
+  // grid-template-columns: repeat(4, 1fr);
   //   grid-template-rows: auto auto;
+
+  // @include respond(tab-port-2) {
+  //   grid-template-columns: repeat(2, 1fr);
+  // }
+
+  @include respond(tab-port) {
+    padding: 5rem 2.5rem;
+  }
+
+  @include respond(tab-port-3) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond(phone) {
+    grid-template-columns: 1fr;
+  }
 
   &__links-container {
     // grid-row: 1 / 2;
@@ -20,8 +36,11 @@
     display: grid;
     justify-content: center;
     justify-items: center;
-
     grid-row-gap: 0.5rem;
+
+    a {
+      text-align: center;
+    }
   }
 
   &__links-title {

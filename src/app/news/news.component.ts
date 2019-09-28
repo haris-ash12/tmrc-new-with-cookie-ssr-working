@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { NewsService } from "../services/news.service";
 import { Meta, Title } from "@angular/platform-browser";
+import { GlobalsService } from "../services/globals.service";
 
 @Component({
   selector: "app-news",
@@ -15,6 +16,7 @@ export class NewsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private newsService: NewsService,
+    private globals: GlobalsService,
     private meta: Meta,
     private titleSevice: Title
   ) {}
@@ -32,7 +34,7 @@ export class NewsComponent implements OnInit {
           title: news.Title,
           datePosted: news.CreatedDate,
           description: newsDescription,
-          featureImage: news.FeatureImage,
+          featureImage: this.globals.url + "/" + news.FeatureImage,
           metaDescription: news.MetaDescription,
           metaKeywords: news.MetaKeywords,
           pageTitle: news.PageTitle
@@ -40,7 +42,8 @@ export class NewsComponent implements OnInit {
 
         this.newsObject = newsObj;
 
-        // console.log(newsObj);
+        console.log("newsobj............................");
+        console.log(newsObj);
 
         this.titleSevice.setTitle(this.newsObject.pageTitle);
         this.meta.updateTag({ name: "keywords", content: this.newsObject.metaKeywords });

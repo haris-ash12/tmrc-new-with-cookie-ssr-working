@@ -116,6 +116,7 @@
   display: grid;
   grid-row-gap: 1rem;
   justify-items: center;
+  margin-bottom: 3.5rem;
 
   &__title {
     font-size: 3.5rem;
@@ -129,7 +130,7 @@
     content: "";
     height: 1px;
     width: 80%;
-    margin-top: 1rem;
+    margin-top: 2.5rem;
     background-color: $color-grey-light;
   }
 }

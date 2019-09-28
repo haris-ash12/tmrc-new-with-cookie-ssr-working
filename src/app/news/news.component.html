@@ -2,7 +2,8 @@
   <div class="news-container__single-news">
     <div class="hero-area">
       <h1 class="hero-area__title heading-1">{{ newsObject.title }}</h1>
-      <p class="hero-area__date">--{{ newsObject.datePosted | date }} --</p>
+      <p class="hero-area__date">-- {{ newsObject.datePosted | date }} --</p>
+      <img [src]="newsObject.featureImage" alt="News Hero Image" />
 
       <!-- <h1 class="hero-area__title heading-1">News Heading</h1>
       <p class="hero-area__date">--21 jan, 2017 --</p> -->

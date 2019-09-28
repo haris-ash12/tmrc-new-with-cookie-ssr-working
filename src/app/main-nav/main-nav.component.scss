@@ -6,7 +6,11 @@
 }
 
 .sidenav {
-  width: 30rem;
+  width: 35rem;
+
+  @include respond(phone) {
+    width: 40rem;
+  }
 }
 
 .sidenav .mat-toolbar {
@@ -38,7 +42,7 @@
   right: 0;
   transform: translate3d(100%, 0, 0);
   background: $color-primary;
-  padding: 2rem;
+  padding: 5rem 2.5rem;
 
   position: fixed;
   height: 100vh;
@@ -56,6 +60,23 @@
 .nav {
   &__logo {
     height: 3.5rem;
+
+    &--csp {
+      margin-left: 2.5rem;
+      margin-right: 2.5rem;
+
+      @include respond(phone) {
+        display: none;
+      }
+    }
+
+    &--csp-phone {
+      display: none;
+      @include respond(phone) {
+        display: block;
+        margin-top: 2.5rem;
+      }
+    }
   }
   &__toggle-btn {
     outline: none;
@@ -174,6 +195,7 @@
 
     & > a {
       font-size: 1.6rem !important;
+      white-space: pre-line !important;
     }
   }
 }
@@ -249,6 +271,7 @@
       padding: 0.5rem 1rem;
       color: #fff;
       text-decoration: none;
+      white-space: pre-line;
 
       &:hover {
         background: transparent;
@@ -261,11 +284,12 @@
 
     &__item-title {
       margin: 0;
+      line-height: 1.7;
     }
 
     &__item-date {
       font-size: 1.3rem;
-      color: $color-grey-light;
+      color: #b9b5b5;
       margin: 0;
     }
   }
